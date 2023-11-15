@@ -1,0 +1,4 @@
+enum Order {
+    Ascending,
+    Descending
+};
