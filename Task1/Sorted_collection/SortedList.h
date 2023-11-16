@@ -53,6 +53,36 @@ private:
     void shiftElementsRight(int i_from, int i_to);
     void shiftElementsLeft(int i_from, int i_to);
 
+    class Iterator{
+        const SortedList<T>* iterated;
+        int pointer;
+    public:
+        Iterator(const SortedList<T>* iterated, int index){
+            this->iterated = iterated;
+            this->pointer = index;
+        }
+
+        T operator*() {
+            return iterated->get(pointer);
+        }
+
+        Iterator &operator++() {
+            pointer++;
+            return *this;
+        }
+
+        bool operator!=(const Iterator &other) const{
+            return other.iterated != iterated || other.pointer != pointer;
+        }
+    };
+public:
+    Iterator begin() const{
+        return Iterator(this, 0);
+    };
+    Iterator end() const{
+        return Iterator(this, count);
+    }
+
     string to_string() const {
         string result = "";
         for (int i = 0; i < count; i++)
