@@ -4,6 +4,8 @@
 
 
 #include <string>
+#include <iostream>
+
 using namespace std;
 
 class Route {
@@ -13,15 +15,27 @@ private:
     int route_number;
 
 public:
-    Route(const string& start, const string& end, int number);
+
+    Route();
+
+    Route(const string &start, const string &end, int number);
 
     string getStartPoint();
+
     string getEndPoint();
+
     int getRouteNumber() const;
 
-    void setStartPoint(const string& start);
-    void setEndPoint(const string& end);
+    void setStartPoint(const string &start);
+
+    void setEndPoint(const string &end);
+
     void setRouteNumber(int number);
+
+    bool operator<(Route& other);
+
+    friend istream &operator>>(istream &is, Route &route);
+    friend ostream &operator<<(ostream &os, Route &route);
 };
 
 

@@ -6,56 +6,59 @@
 
 using namespace std;
 
-template <typename T, typename Comparable = short>
+template <typename T>
 class Comparer{
 private:
-    function<bool(T, T)> comparerGreat;
+    function<bool(const T&, const T&)> comparerGreat;
+
 public:
     explicit Comparer();
 
-    explicit Comparer(function<Comparable(T)> converter);
+    template<class Comparable>
+    Comparer(function<Comparable(const T &)> *converter);
 
-    /// If a getLess b - True else false
-    bool less(T a, T b){
+    /// If a getLessEqual b - True else false
+    bool lessEqual(const T& a, const T& b){
         return !comparerGreat(a, b);
     }
 
-    bool great(T a, T b){
+    bool great(const T& a,const T& b){
         return comparerGreat(a, b);
     }
 
-    T& getGreat(T a, T b){
+    T& getGreat(const T& a,const T& b){
         return great(a, b) ? a : b;
     }
 
-    T& getLess(T a, T b){
-        return less(a, b) ? a : b;
+    T& getLessEqual(const T& a,const T& b){
+        return lessEqual(a, b) ? a : b;
     }
 
 private:
-    void setComparer(function<bool(T, T)> comparer);
-
+    void setComparer(function<bool(const T&,const T&)> comparer);
     void checkComparer();
 };
 
-template<typename T, typename Comparable>
-void Comparer<T, Comparable>::setComparer(function<bool(T, T)> comparer) {
+template<typename T>
+template<class Comparable>
+Comparer<T>::Comparer(function<Comparable(const T &)> *converter) {
+    setComparer([&converter](const T& a,const T& b) { return (*converter)(a) > (*converter)(b); });
+}
+
+template<typename T>
+void Comparer<T>::setComparer(function<bool(const T&,const T&)> comparer) {
     this->comparerGreat = comparer;
-    checkComparer();
+    //checkComparer();
 }
 
-template<typename T, typename Comparable>
-Comparer<T, Comparable>::Comparer() {
-    setComparer([](T a, T b) { return a > b; });
+template<typename T>
+Comparer<T>::Comparer() {
+    setComparer([](const T& a,const T& b) { return a > b; });
 }
 
-template<typename T, typename Comparable>
-Comparer<T, Comparable>::Comparer(function<Comparable(T)> converter) {
-    setComparer([&converter](T a, T b) { return converter(a) > converter(b); });
-}
 
-template<typename T, typename Comparable>
-void Comparer<T, Comparable>::checkComparer() {
+template<typename T>
+void Comparer<T>::checkComparer() {
     try {
         comparerGreat(T(), T());
     } catch (exception e){
