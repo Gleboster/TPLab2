@@ -1,4 +1,5 @@
-#include "Task1/lib/RouteMap.h"
+#include "lib/RouteMap.h"
+#include "Function.h"
 
 void pause() {
     system("pause");
@@ -100,7 +101,9 @@ namespace Task1 {
 
 namespace Task2 {
     void startTask2() {
+        const string fileName = "C:\\Users\\glebl\\CLionProjects\\Labs\\Lab2\\Task2\\MyInput.txt";
 
+        printLineFromFile(fileName);
     };
 }
 
@@ -108,8 +111,8 @@ int main() {
 
     while (true) {
         clear();
-        int choiseTask = menuTask();
-        switch (choiseTask) {
+        int choiceTask = menuTask();
+        switch (choiceTask) {
             case 1:
                 Task1::startTask1();
                 break;

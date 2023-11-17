@@ -6,7 +6,7 @@
 #include "Route.h"
 
 class RouteMap {
-    const int needLength = 1;
+    const int needLength = 8;
     Sorting::SortedList<Route*> *base;
 
 public:

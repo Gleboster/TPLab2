@@ -29,8 +29,6 @@ RouteMap::RouteMap() {
                                                                 return a->getRouteNumber() <= b->getRouteNumber();
                                                             }
                                                     ));
-    base->insert(new Route("de", "ed", 0));
-
     delete[] routes;
 }
 

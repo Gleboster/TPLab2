@@ -8,6 +8,10 @@ add_executable(Lab2 main.cpp)
 include_directories(Task1)
 add_subdirectory(Task1)
 
+include_directories(Task2)
+add_subdirectory(Task2)
+
 target_link_libraries(Lab2 Task1)
+target_link_libraries(Lab2 Task2)
 
 add_subdirectory(Google_tests)
