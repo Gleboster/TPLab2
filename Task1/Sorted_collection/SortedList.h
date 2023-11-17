@@ -5,7 +5,6 @@
 #include <functional>
 #include <iostream>
 #include <string>
-#include "Comparer.h"
 #include "mathSorting.h"
 
 using namespace std;

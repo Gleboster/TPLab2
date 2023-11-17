@@ -9,6 +9,7 @@ RouteMap::RouteMap() {
     std::cout << "Input route: Start point, End point, Number route (Start/End points without space)" << endl;
     for (int i = 0; i < needLength; ++i) {
         int numberRoute;
+        std::cout << "----------" << i + 1 << "-----------" << endl;
         string startPoint, endPoint;
         std::cout << "Input number of route: ";
         std::cin >> numberRoute;

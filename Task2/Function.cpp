@@ -48,6 +48,11 @@ namespace Task2 {
                 continue;
             }
 
+            if(line[0] == '-') {
+                number *= -1;
+                line.erase(0, 1);
+            }
+
             if (line.length() == 2 && line[0] - '0' == number / 10 && line[1] - '0' == number % 10)
                 return true;
         }

@@ -3,7 +3,6 @@ project(Sorted_collection)
 set(HEADER_FILES
         SortedList.h
         mathSorting.h
-        Comparer.h
 )
 
 set(SOURCE_FILES
